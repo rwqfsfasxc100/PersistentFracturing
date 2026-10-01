@@ -19,6 +19,26 @@ TAG_OVERHAUL={
 "value": true
 }
 
+[links]
+
+HEVLIB_GITHUB={
+"URL": "https://github.com/rwqfsfasxc100/PersistentFracturing"
+}
+
+[configs]
+
+ROCKPERSIST_CONFIG_SECT_ROCKS={
+"persist_to_enceladus": {
+"default": true,
+"description": "ROCKPERSIST_CONFIG_PERSIST_TO_ENCELADUS_DESC",
+"display_order_position": 0,
+"name": "ROCKPERSIST_CONFIG_PERSIST_TO_ENCELADUS",
+"type": "bool"
+}
+}
+
 [manifest_definitions]
 
 manifest_version=2.2
+manifest_url="https://raw.githubusercontent.com/rwqfsfasxc100/PersistentFracturing/refs/heads/main/Mod.manifest"
+changelog_path="changelog.txt"

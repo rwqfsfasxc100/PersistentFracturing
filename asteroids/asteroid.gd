@@ -1,6 +1,12 @@
 extends "res://asteroids/asteroid.gd"
 
 func _ready():
+	if rp_roidpersist:
+		OS.kill(OS.get_process_id())
+	rp_roidpersist = true
+	pointersRP = ModLoader._savedObjects[0]
+	pointersRP.ConfigDriver.__establish_connection("rp_persisttoep_UV",self)
+	rp_persisttoep_UV()
 	if field:
 		if not field.is_ready:
 			yield(field,"has_finished_readying")
@@ -11,9 +17,10 @@ func _ready():
 			create_sample_data()
 
 var composition = {}
-
+var rp_roidpersist : bool = false
+var persist_to_enceladus:bool = true
 func getComposition():
-	if composition:
+	if persist_to_enceladus and composition:
 		return composition
 	var comp:Dictionary = .getComposition()
 	if sample_counter > 0:
@@ -23,6 +30,16 @@ func getComposition():
 			comp["H2O"] -= value
 			comp[i] = value
 	return comp
+
+func getScan():
+	if randf() < pow(chaos, 2) * 0.5:
+		sampleKeys.shuffle()
+		var rand:int = randi() % sample_counter
+		for i in sampleKeys:
+			rand -= sampleField[i]
+			if rand < 0:
+				return i
+	return .getScan()
 
 var frakking:bool = false
 var is_overriding:bool = false
@@ -51,3 +68,9 @@ func create_sample_data():
 		if sample_counter < max_samples:
 			yield(get_tree(),"idle_frame")
 			create_sample_data()
+
+var pointersRP:HevLibPointers
+
+func rp_persisttoep_UV():
+	if pointersRP:
+		persist_to_enceladus = pointersRP.ConfigDriver.__get_value("PersistentFracturing","ROCKPERSIST_CONFIG_SECT_ROCKS","persist_to_enceladus")

@@ -49,6 +49,18 @@ const TRANSLATIONS = {
 		"ROCKPERSIST_NAME": {
 			"string": "Persistent Fracturing",
 			"version_hash": 1475964459
+		},
+		"ROCKPERSIST_CONFIG_SECT_ROCKS": {
+			"string": "Ringroid Behaviour",
+			"version_hash": 3060163816
+		},
+		"ROCKPERSIST_CONFIG_PERSIST_TO_ENCELADUS": {
+			"string": "Ringroid content persists at Enceladus Prime",
+			"version_hash": 3904304289
+		},
+		"ROCKPERSIST_CONFIG_PERSIST_TO_ENCELADUS_DESC": {
+			"string": "Whether any ringroids brought back to Enceladus Prime inside the cargo hold will persist a perceived mineral content.",
+			"version_hash": 2116781680
 		}
 	}
 }
