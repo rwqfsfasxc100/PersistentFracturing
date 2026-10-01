@@ -1,0 +1,24 @@
+[mod_information]
+
+name="ROCKPERSIST_NAME"
+id="hev.RockPersist"
+description="ROCKPERSIST_DESC"
+brief="ROCKPERSIST_BRIEF"
+author="__hev"
+
+[version]
+
+version_major=1
+version_minor=0
+version_bugfix=0
+
+[tags]
+
+TAG_OVERHAUL={
+"type": "bool",
+"value": true
+}
+
+[manifest_definitions]
+
+manifest_version=2.2
