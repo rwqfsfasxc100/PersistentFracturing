@@ -73,4 +73,4 @@ var pointersRP:HevLibPointers
 
 func rp_persisttoep_UV():
 	if pointersRP:
-		persist_to_enceladus = pointersRP.ConfigDriver.__get_value("PersistentFracturing","ROCKPERSIST_CONFIG_SECT_ROCKS","persist_to_enceladus")
+		persist_to_enceladus = pointersRP.ConfigDriver.__get_value("ROCKPERSIST_NAME","ROCKPERSIST_CONFIG_SECT_ROCKS","persist_to_enceladus")

@@ -10,7 +10,7 @@ author="__hev"
 
 version_major=1
 version_minor=0
-version_bugfix=0
+version_bugfix=1
 
 [tags]
 
@@ -23,6 +23,15 @@ TAG_OVERHAUL={
 
 HEVLIB_GITHUB={
 "URL": "https://github.com/rwqfsfasxc100/PersistentFracturing"
+}
+HEVLIB_DISCORD={
+"URL": "https://discord.com/channels/426287934870781952/1555071312634847272"
+}
+HEVLIB_DONATIONS={
+"URL": "https://ko-fi.com/00hev"
+}
+HEVLIB_BUGREPORTS={
+"URL": "https://forms.gle/RmC4Zgonp6frFgnK7"
 }
 
 [configs]

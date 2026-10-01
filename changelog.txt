@@ -1,3 +1,9 @@
+[1.0.1]
+
+1=* Fixed issue that prevented roids brought to Enceladus from containing ore
+2=* Added links
+3=* Can now be installed from the GitHub downloader menu
+
 [1.0.0]
 
 1=* Initial release

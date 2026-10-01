@@ -1,0 +1,9 @@
+;MOD_ID|hev.RockPersist
+;MOD_NAME|Persistent Fracturing
+;AUTHOR|__hev
+
+[b]Persistent Fracturing[/b]
+
+Changes ringroids to remember their initial composition, and keep it regardless of traversal or astrogation. Ringroids fracturing into smaller roids also pass down their composition.
+
+Has the option to have roids brought to Enceladus Prime keep their composition instead of just giving you water.
