@@ -15,20 +15,22 @@ func getVeinAt(pos):
 	psq.set_shape(pss)
 	psq.transform = Transform2D(0.0, localCoord)
 	psq.collision_layer = 1
-	for col in get_world_2d().direct_space_state.intersect_shape(psq):
-		var c = col.collider
-		if "frakking" in c and c.frakking:
-			var ctr:int = c.max_samples
-			var content:Dictionary = c.sampleField.duplicate()
-			var ores:Array = c.sampleKeys.duplicate()
-			while ctr > 1:
-				var select = ores[randi() % ores.size()]
-				content[select] -= 1
-				if content[select] < 1:
-					content.erase(select)
-					ores.erase(select)
-				ctr -= 1
-			return ores[0]
+	var wor = get_world_2d()
+	if wor:
+		for col in wor.direct_space_state.intersect_shape(psq):
+			var c = col.collider
+			if "frakking" in c and c.frakking:
+				var ctr:int = c.max_samples
+				var content:Dictionary = c.sampleField.duplicate()
+				var ores:Array = c.sampleKeys.duplicate()
+				while ctr > 1:
+					var select = ores[randi() % ores.size()]
+					content[select] -= 1
+					if content[select] < 1:
+						content.erase(select)
+						ores.erase(select)
+					ctr -= 1
+				return ores[0]
 	return .getVeinAt(pos)
 
 func getChaosAt(pos):
