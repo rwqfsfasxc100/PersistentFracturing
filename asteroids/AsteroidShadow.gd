@@ -17,12 +17,16 @@ func spawnAsteroidByClass(oc, spot, chaos, spawnPointRandomness = 0.0, initialLi
 		var max_samples:int = out.max_samples
 		var sampleKeys:Array = samples.keys()
 		while sample_count > max_samples:
-			var mineral = sampleKeys[randi() % sampleKeys.size()]
-			samples[mineral] -= 1
-			if samples[mineral] < 1:
-				samples.erase(mineral)
-				sampleKeys.erase(mineral)
-			sample_count -= 1
+			if sampleKeys:
+				var mineral = sampleKeys[randi() % sampleKeys.size()]
+				samples[mineral] -= 1
+				if samples[mineral] < 1:
+					samples.erase(mineral)
+					sampleKeys.erase(mineral)
+				sample_count -= 1
+			else:
+				out.is_waiting_on_sampling = true
+				break
 		out.sampleField = samples
 		out.sample_counter = max_samples
 		out.chaos = currChaos

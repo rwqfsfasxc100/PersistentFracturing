@@ -1,3 +1,7 @@
+[1.0.2]
+
+1=* Fixed crash caused by a divide by zero error if a rock was broken down by more than 1 stage too quickly.
+
 [1.0.1]
 
 1=* Fixed issue that prevented roids brought to Enceladus from containing ore

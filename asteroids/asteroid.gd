@@ -1,5 +1,7 @@
 extends "res://asteroids/asteroid.gd"
 
+var onready_completed:bool = false
+
 func _ready():
 	if rp_roidpersist:
 		OS.kill(OS.get_process_id())
@@ -7,6 +9,7 @@ func _ready():
 	pointersRP = ModLoader._savedObjects[0]
 	pointersRP.ConfigDriver.__establish_connection("rp_persisttoep_UV",self)
 	rp_persisttoep_UV()
+	
 	if field:
 		if not field.is_ready:
 			yield(field,"has_finished_readying")
@@ -14,7 +17,8 @@ func _ready():
 		field.referenced_rock = self
 		if max_samples == 0:
 			max_samples = int(clamp(baseMass,16.0,1024.0))
-			create_sample_data()
+			is_waiting_on_sampling = true
+	onready_completed = true
 
 var composition = {}
 var rp_roidpersist : bool = false
@@ -51,8 +55,15 @@ var chaos:float = 0.0
 
 var sampleField:Dictionary = {}
 var sampleKeys:Array = Array()
-func create_sample_data():
-	if not is_overriding:
+
+var is_waiting_on_sampling:bool = false
+func _process(delta:float):
+	if not onready_completed:
+		return
+	if (is_overriding or fracturing):
+		is_waiting_on_sampling = false
+		return
+	if is_waiting_on_sampling:
 		var gPos:Vector2 = CurrentGame.globalCoords(position)
 		chaos = field.getChaosAt(gPos)
 		var idx:int = 0
@@ -65,12 +76,11 @@ func create_sample_data():
 				sampleField[sample] += 1
 			sample_counter += 1
 			idx += 1
-		if sample_counter < max_samples:
-			yield(get_tree(),"idle_frame")
-			create_sample_data()
+		is_waiting_on_sampling = sample_counter < max_samples
 
 var pointersRP:HevLibPointers
 
 func rp_persisttoep_UV():
 	if pointersRP:
 		persist_to_enceladus = pointersRP.ConfigDriver.__get_value("ROCKPERSIST_NAME","ROCKPERSIST_CONFIG_SECT_ROCKS","persist_to_enceladus")
+
